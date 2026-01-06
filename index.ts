@@ -2,6 +2,7 @@ import express from 'express'
 import { CloudTasksClient, protos } from "@google-cloud/tasks"
 const app = express()
 app.use(express.json())
+const PORT = process.env.PORT
 const client = new CloudTasksClient()
 const PROJECT_ID = process.env.GCP_PROJECT || "website-voice-agent-demo"
 const LOCATION = "us-central1"
@@ -36,7 +37,6 @@ app.post("/hello", (req, res)=>{
   console.log(`Call initiated to ${phoneNo}`)
 })
 
-app.listen(3000, ()=>{
-  console.log("Server running");
-  
+app.listen(PORT, ()=>{
+  console.log("Server running at ", PORT);
 })
